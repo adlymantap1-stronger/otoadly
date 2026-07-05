@@ -12,8 +12,8 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-scripts --no-interaction
 
-RUN cp .env.example .env && php artisan key:generate
+RUN php artisan key:generate --force
 
 EXPOSE 8000
 
-CMD php artisan serve --host=0.0.0.0 --port=8000
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
