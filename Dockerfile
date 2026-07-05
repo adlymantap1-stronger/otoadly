@@ -19,6 +19,8 @@ CMD touch .env && \
     echo "APP_ENV=${APP_ENV}" >> .env && \
     echo "APP_DEBUG=${APP_DEBUG}" >> .env && \
     echo "APP_URL=${APP_URL}" >> .env && \
+    echo "APP_URL=${APP_URL}" >> .env && \
+    echo "ASSET_URL=https://otoadly-production.up.railway.app" >> .env && \
     echo "DB_CONNECTION=${DB_CONNECTION}" >> .env && \
     echo "DB_HOST=${DB_HOST}" >> .env && \
     echo "DB_PORT=${DB_PORT}" >> .env && \
