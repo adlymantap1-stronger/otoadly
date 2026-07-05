@@ -29,6 +29,7 @@ CMD touch .env && \
     echo "CACHE_STORE=${CACHE_STORE}" >> .env && \
     echo "QUEUE_CONNECTION=${QUEUE_CONNECTION}" >> .env && \
     echo "FILESYSTEM_DISK=${FILESYSTEM_DISK}" >> .env && \
+    echo "FORCE_HTTPS=true" >> .env && \
     php artisan config:clear && \
     php artisan migrate --force && \
     php artisan serve --host=0.0.0.0 --port=8000
