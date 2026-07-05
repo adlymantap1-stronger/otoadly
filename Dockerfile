@@ -31,4 +31,4 @@ CMD touch .env && \
     echo "FILESYSTEM_DISK=${FILESYSTEM_DISK}" >> .env && \
     php artisan config:clear && \
     php artisan migrate --force && \
-    php artisan serve --host=0.0.0.0 --port=$PORT
+    php artisan serve --host=0.0.0.0 --port=8000
