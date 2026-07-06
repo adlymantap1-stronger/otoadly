@@ -2,118 +2,81 @@
 
 @section('content')
 
-{{-- 1. Marquee Promo --}}
 <div class="bg-navy-950 py-2 text-sm text-slate-300 border-b border-white/5 overflow-hidden">
     <div class="flex whitespace-nowrap animate-marquee">
         <span class="mx-16">Otoadly - Marketplace Jual Beli Mobil Bekas &nbsp;&bull;&nbsp; Ribuan pilihan mobil terverifikasi, aman, dan terpercaya.</span>
         <span class="mx-16">Otoadly - Marketplace Jual Beli Mobil Bekas &nbsp;&bull;&nbsp; Ribuan pilihan mobil terverifikasi, aman, dan terpercaya.</span>
     </div>
 </div>
+<nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5">
+    {{-- Logo --}}
+    <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
+        <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
+            <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
+            <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
+            <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+            <circle cx="14" cy="26" r="2" fill="#F5A623"/>
+            <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+            <circle cx="46" cy="26" r="2" fill="#F5A623"/>
+            <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+            <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+        </svg>
+        <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
+    </a>
 
-{{-- 2. Navbar Container Utama (Gunakan relative dan z-50 agar menu mobile tidak terpotong) --}}
-<<nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5 justify-between relative z-50" x-data="{ open: false }">
-  
-  <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
-    <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
-      <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
-      <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
-      <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
-      <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-      <circle cx="14" cy="26" r="2" fill="#F5A623"/>
-      <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-      <circle cx="46" cy="26" r="2" fill="#F5A623"/>
-      <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-      <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-    </svg>
-    <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
-  </a>
+    {{-- Menu tengah --}}
+    <div class="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
+        <a href="#mobil-pilihan" class="text-slate-300 hover:text-white transition">Beli Mobil</a>
+        <a href="{{ route('cars.create') }}" class="text-slate-300 hover:text-white transition">Jual Mobil</a>
+        <a href="{{ route('simulasi-kredit') }}" class="text-slate-300 hover:text-white transition">Simulasi Kredit</a>
+        <a href="#bantuan" class="text-slate-300 hover:text-white transition">Bantuan</a>
+    </div>
 
-  <div class="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
-    <a href="#mobil-pilihan" class="text-slate-300 hover:text-white transition">Beli Mobil</a>
-    <a href="{{ route('cars.create') }}" class="text-slate-300 hover:text-white transition">Jual Mobil</a>
-    <a href="{{ route('simulasi-kredit') }}" class="text-slate-300 hover:text-white transition">Simulasi Kredit</a>
-    <a href="#bantuan" class="text-slate-300 hover:text-white transition">Bantuan</a>
-  </div>
-
-  <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+    {{-- User / Auth --}}
     @auth
-      <div class="relative" x-data="{ dropdownOpen: false }">
-        <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
-          <span>{{ auth()->user()->name }}</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-          </svg>
-        </button>
-        <div x-show="dropdownOpen" class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50" x-cloak>
-          <a href="{{ route('orders.notifications') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">Notifikasi</a>
-          <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">Pesanan Saya</a>
-          <div class="border-t border-white/10 my-1"></div>
-          <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">Logout</button>
-          </form>
-        </div>
-      </div>
-    @else
-      <a href="{{ route('login') }}" class="text-slate-300 text-sm hover:text-white transition">Masuk</a>
-      <a href="{{ route('cars.create') }}" class="bg-amber-400 text-navy-950 text-sm font-semibold px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">
-        + Jual Mobil Anda
-      </a>
-    @endauth
-  </div>
-
-  <div class="-mr-2 flex md:hidden">
-    <button @click="open = !open" type="button" class="relative inline-flex items-center justify-center rounded-xl bg-amber-400 p-2.5 text-navy-950 hover:bg-amber-300 focus:outline-none">
-      <span class="sr-only">Open main menu</span>
-      
-      <svg x-show="!open" class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-      </svg>
-      
-      <svg x-show="open" class="size-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true" x-cloak>
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6 M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
-
-  <div x-show="open" 
-       @click.outside="open = false"
-       x-transition:enter="transition ease-out duration-150"
-       x-transition:enter-start="opacity-0 -translate-y-2"
-       x-transition:enter-end="opacity-100 translate-y-0"
-       x-transition:leave="transition ease-in duration-100"
-       x-transition:leave-start="opacity-100 translate-y-0"
-       x-transition:leave-end="opacity-0 -translate-y-2"
-       class="absolute top-full left-0 right-0 bg-[#0B1220] border-b border-white/5 px-6 pt-4 pb-6 md:hidden flex flex-col shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] z-40"
-       x-cloak>
-       
-    <div class="space-y-1 py-2">
-      <a href="#mobil-pilihan" @click="open = false" class="block rounded-lg px-3 py-3 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white transition">Beli Mobil</a>
-      <a href="{{ route('cars.create') }}" @click="open = false" class="block rounded-lg px-3 py-3 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white transition">Jual Mobil</a>
-      <a href="{{ route('simulasi-kredit') }}" @click="open = false" class="block rounded-lg px-3 py-3 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white transition">Simulasi Kredit</a>
-      <a href="#bantuan" @click="open = false" class="block rounded-lg px-3 py-3 text-base font-medium text-gray-300 hover:bg-white/5 hover:text-white transition">Bantuan</a>
-    </div>
-
-    <div class="border-t border-white/10 pt-4 pb-2">
-      <div class="flex flex-col space-y-3">
-        @auth
-          <form action="{{ route('logout') }}" method="POST" class="w-full">
-            @csrf
-            <button type="submit" class="w-full bg-red-500/10 text-red-400 hover:bg-red-500 hover:text-white font-semibold py-3.5 rounded-xl transition text-center block text-sm">
-              Logout
+        <div class="flex items-center gap-3 relative flex-shrink-0" x-data="{ open: false }">
+            <button @click="open = !open" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
+                <span>{{ auth()->user()->name }}</span>
+                @if (auth()->user()->unreadNotifications->count() > 0)
+                    <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                        {{ auth()->user()->unreadNotifications->count() }}
+                    </span>
+                @endif
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
             </button>
-          </form>
-        @else
-          <a href="{{ route('login') }}" class="block text-center text-slate-300 font-semibold py-3 hover:text-white transition text-sm">
-            Masuk
-          </a>
-          <a href="{{ route('cars.create') }}" class="block w-full text-center bg-amber-400 text-navy-950 font-bold py-3.5 rounded-xl shadow-lg active:scale-[0.98] transition text-sm">
-            + Jual Mobil Anda
-          </a>
-        @endauth
-      </div>
-    </div>
-  </div>
+            <div x-show="open" @click.outside="open = false"
+                 class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50">
+                <a href="{{ route('orders.notifications') }}" class="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
+                    Notifikasi
+                    @if (auth()->user()->unreadNotifications->count() > 0)
+                        <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                            {{ auth()->user()->unreadNotifications->count() }}
+                        </span>
+                    @endif
+                </a>
+                <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
+                    Pesanan Saya
+                </a>
+                <div class="border-t border-white/10 my-1"></div>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
+    @else
+        <div class="flex items-center gap-3 flex-shrink-0">
+            <a href="{{ route('login') }}" class="text-slate-300 text-sm hover:text-white transition">Masuk</a>
+            <a href="{{ route('cars.create') }}" class="bg-amber-400 text-navy-950 text-sm font-semibold px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">
+                + Jual Mobil Anda
+            </a>
+        </div>
+    @endauth
 </nav>
 
 <section class="relative overflow-hidden pt-20 pb-28 px-6 text-center bg-navy-950">
@@ -198,7 +161,7 @@
     @forelse ($cars as $car)
         <a href="{{ route('cars.show', $car) }}"
            class="block bg-white rounded-xl overflow-hidden border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition">
-            <div class="h-40 bg-white flex items-center justify-center">
+            <div class="h-40 bg-linear-to-br from-navy-800 to-navy-950 flex items-center justify-center">
                @if ($car->image)
              <img src="{{ $car->image }}"
             alt="{{ $car->brand }} {{ $car->model }}"
