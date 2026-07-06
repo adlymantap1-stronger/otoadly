@@ -10,89 +10,93 @@
     </div>
 </div>
 
-{{-- Navbar Utama (Menggunakan satu state Alpine.js agar sinkron) --}}
-<nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5 relative" x-data="{ open: false }">
-    {{-- Logo --}}
-    <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
-        <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
-            <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
-            <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
-            <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-            <circle cx="14" cy="26" r="2" fill="#F5A623"/>
-            <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-            <circle cx="46" cy="26" r="2" fill="#F5A623"/>
-            <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-            <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-        </svg>
-        <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
-    </a>
+{{-- Bungkus Nav & Mobile Menu dalam satu scope Alpine.js di level paling atas --}}
+<div x-data="{ open: false }">
+    
+    {{-- Navbar Utama --}}
+    <nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5">
+        {{-- Logo --}}
+        <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
+            <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
+                <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
+                <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
+                <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+                <circle cx="14" cy="26" r="2" fill="#F5A623"/>
+                <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+                <circle cx="46" cy="26" r="2" fill="#F5A623"/>
+                <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+                <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+            </svg>
+            <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
+        </a>
 
-    {{-- Menu Desktop --}}
-    <div class="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
-        <a href="#mobil-pilihan" class="text-slate-300 hover:text-white transition">Beli Mobil</a>
-        <a href="{{ route('cars.create') }}" class="text-slate-300 hover:text-white transition">Jual Mobil</a>
-        <a href="{{ route('simulasi-kredit') }}" class="text-slate-300 hover:text-white transition">Simulasi Kredit</a>
-        <a href="#bantuan" class="text-slate-300 hover:text-white transition">Bantuan</a>
-    </div>
+        {{-- Menu Desktop --}}
+        <div class="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
+            <a href="#mobil-pilihan" class="text-slate-300 hover:text-white transition">Beli Mobil</a>
+            <a href="{{ route('cars.create') }}" class="text-slate-300 hover:text-white transition">Jual Mobil</a>
+            <a href="{{ route('simulasi-kredit') }}" class="text-slate-300 hover:text-white transition">Simulasi Kredit</a>
+            <a href="#bantuan" class="text-slate-300 hover:text-white transition">Bantuan</a>
+        </div>
 
-    {{-- Auth Desktop --}}
-    @auth
-        <div class="hidden md:flex items-center gap-3 relative flex-shrink-0" x-data="{ dropdownOpen: false }">
-            <button @click="dropdownOpen = !dropdownOpen" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
-                <span>{{ auth()->user()->name }}</span>
-                @if (auth()->user()->unreadNotifications->count() > 0)
-                    <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
-                        {{ auth()->user()->unreadNotifications->count() }}
-                    </span>
-                @endif
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
-                </svg>
-            </button>
-            <div x-show="dropdownOpen" @click.outside="dropdownOpen = false"
-                 class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50"
-                 x-cloak>
-                <a href="{{ route('orders.notifications') }}" class="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                    Notifikasi
+        {{-- Auth Desktop --}}
+        @auth
+            <div class="hidden md:flex items-center gap-3 relative flex-shrink-0" x-data="{ dropdownOpen: false }">
+                <button @click="dropdownOpen = !dropdownOpen" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
+                    <span>{{ auth()->user()->name }}</span>
                     @if (auth()->user()->unreadNotifications->count() > 0)
                         <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
                             {{ auth()->user()->unreadNotifications->count() }}
                         </span>
                     @endif
-                </a>
-                <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                    Pesanan Saya
-                </a>
-                <div class="border-t border-white/10 my-1"></div>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">
-                        Logout
-                    </button>
-                </form>
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div x-show="dropdownOpen" @click.outside="dropdownOpen = false"
+                     class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50"
+                     x-cloak>
+                    <a href="{{ route('orders.notifications') }}" class="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
+                        Notifikasi
+                        @if (auth()->user()->unreadNotifications->count() > 0)
+                            <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
+                                {{ auth()->user()->unreadNotifications->count() }}
+                            </span>
+                        @endif
+                    </a>
+                    <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
+                        Pesanan Saya
+                    </a>
+                    <div class="border-t border-white/10 my-1"></div>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">
+                            Logout
+                        </button>
+                    </form>
+                </div>
             </div>
-        </div>
-    @else
-        <div class="hidden md:flex items-center gap-3 flex-shrink-0">
-            <a href="{{ route('login') }}" class="text-slate-300 text-sm hover:text-white transition">Masuk</a>
-            <a href="{{ route('cars.create') }}" class="bg-amber-400 text-navy-950 text-sm font-semibold px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">
-                + Jual Mobil Anda
-            </a>
-        </div>
-    @endauth
+        @else
+            <div class="hidden md:flex items-center gap-3 flex-shrink-0">
+                <a href="{{ route('login') }}" class="text-slate-300 text-sm hover:text-white transition">Masuk</a>
+                <a href="{{ route('cars.create') }}" class="bg-amber-400 text-navy-950 text-sm font-semibold px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">
+                    + Jual Mobil Anda
+                </a>
+            </div>
+        @endauth
 
-    {{-- Hamburger Button (Mobile) --}}
-    <button @click="open = !open" class="ml-auto md:hidden text-white p-2 focus:outline-none z-50">
-        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-cloak>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-    </button>
+        {{-- Hamburger Button (Mobile) --}}
+        <button @click="open = !open" class="ml-auto md:hidden text-white p-2 focus:outline-none">
+            <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+            <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-cloak>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </nav>
 
-    {{-- Mobile Menu Overlay (Perbaikan Utama) --}}
+    {{-- Mobile Menu Overlay (SEKARANG SUDAH DI LUAR TAG <nav>) --}}
     <div x-show="open" 
          x-transition:enter="transition ease-out duration-200"
          x-transition:enter-start="opacity-0"
@@ -100,7 +104,7 @@
          x-transition:leave="transition ease-in duration-150"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 bg-navy-950 z-40 px-6 pt-24 pb-8 md:hidden flex flex-col justify-between"
+         class="fixed inset-0 bg-navy-950 z-50 px-6 pt-24 pb-8 md:hidden flex flex-col justify-between"
          x-cloak>
          
         {{-- List Link Navigasi Mobile --}}
@@ -134,7 +138,8 @@
             @endauth
         </div>
     </div>
-</nav>
+
+</div> {{-- Penutup Bungkus Utama Alpine JS --}}
 
 <section class="relative overflow-hidden pt-20 pb-28 px-6 text-center bg-navy-950">
     <div class="absolute inset-0 z-0">
