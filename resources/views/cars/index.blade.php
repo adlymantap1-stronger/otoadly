@@ -8,11 +8,11 @@
     <div class="bg-navy-950 px-6 md:px-12 py-8">
     <div class="max-w-6xl mx-auto flex items-center justify-between">
         <div class="flex items-center gap-10">
-           <a href="{{ route('welcome') }}" class="text-slate-300 hover:text-white text-sm font-semibold px-4 py-2 rounded-lg border border-white/20 hover:border-white/40 transition">
+           <a href="{{ route('home') }}" class="text-slate-300 hover:text-white text-sm font-semibold px-4 py-2 rounded-lg border border-white/20 hover:border-white/40 transition">
                  ← Beranda
             </a>
                 <div>
-                    <a href="{{ route('welcome') }}" class="flex items-center gap-2">
+                    <a href="{{ route('home') }}" class="flex items-center gap-2">
     <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
         <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
         <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>

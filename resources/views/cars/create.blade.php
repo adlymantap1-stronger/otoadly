@@ -7,7 +7,7 @@
 
         {{-- Header --}}
         <div class="mb-8">
-            <a href="{{ route('welcome') }}" class="text-sm text-gray-500 hover:text-navy-950 transition">
+            <a href="{{ route('home') }}" class="text-sm text-gray-500 hover:text-navy-950 transition">
                 ← Kembali
             </a>
             <h1 class="font-display text-2xl font-bold text-navy-950 mt-2">Tambah Mobil</h1>
