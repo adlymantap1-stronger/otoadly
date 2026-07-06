@@ -101,15 +101,8 @@ public function update(Request $request, Car $car)
         'transmission' => 'required|in:manual,matic',
         'fuel_type'    => 'required|in:bensin,diesel,listrik,hybrid',
         'description'  => 'nullable|string',
-        'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        'image'        => 'nullable|url',
     ]);
-
-    if ($request->hasFile('image')) {
-        if ($car->image) {
-            Storage::disk('public')->delete($car->image);
-        }
-        $validated['image'] = $request->file('image')->store('cars', 'public');
-    }
 
     $car->update($validated);
 
