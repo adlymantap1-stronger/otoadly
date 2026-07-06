@@ -5,36 +5,38 @@
 <div class="bg-paper min-h-screen">
 
     {{-- Header --}}
-    <div class="bg-navy-950 px-6 md:px-12 py-8">
-    <div class="max-w-6xl mx-auto flex items-center justify-between">
-        <div class="flex items-center gap-10">
-           <a href="{{ route('home') }}" class="text-slate-300 hover:text-white text-sm font-semibold px-4 py-2 rounded-lg border border-white/20 hover:border-white/40 transition">
-                 ← Beranda
-            </a>
-                <div>
-                    <a href="{{ route('home') }}" class="flex items-center gap-2">
-    <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
-        <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
-        <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
-        <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-        <circle cx="14" cy="26" r="2" fill="#F5A623"/>
-        <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
-        <circle cx="46" cy="26" r="2" fill="#F5A623"/>
-        <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-        <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
-    </svg>
-    <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
-</a>
-                    <p class="text-slate-300 text-sm mt-0.5">Semua Mobil</p>
-                </div>
+    <nav class="bg-navy-950 px-6 py-5 flex items-center justify-between border-b border-white/5">
+    {{-- Logo & Beranda --}}
+    <div class="flex items-center gap-4 flex-shrink-0">
+        <a href="{{ route('home') }}" class="text-slate-300 hover:text-white text-sm font-semibold px-3 py-2 rounded-lg border border-white/20 hover:border-white/40 transition">
+            ← Beranda
+        </a>
+        <a href="{{ route('home') }}" class="flex items-center gap-2">
+            <svg viewBox="0 0 60 30" width="40" height="20" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
+                <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
+                <line x1="30" y1="1" x2="30" y2="10" stroke="#0B1220" stroke-width="1.2"/>
+                <circle cx="14" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+                <circle cx="14" cy="26" r="2" fill="#F5A623"/>
+                <circle cx="46" cy="26" r="5" fill="#0B1220" stroke="#F5A623" stroke-width="1.2"/>
+                <circle cx="46" cy="26" r="2" fill="#F5A623"/>
+                <rect x="2" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+                <rect x="53" y="13" width="5" height="3" rx="1" fill="#F5A623"/>
+            </svg>
+            <div>
+                <span class="font-display text-lg font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
+                <p class="text-slate-300 text-xs">Semua Mobil</p>
             </div>
-            <a href="{{ route('cars.create') }}"
-            class="bg-amber-400 text-navy-950 text-sm font-semibold px-5 py-2.5 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">
-                + Jual Mobil
-            </a>
-        </div>
+        </a>
     </div>
+
+    {{-- Tombol Jual Mobil --}}
+    <a href="{{ route('cars.create') }}"
+       class="bg-amber-400 text-navy-950 text-sm font-semibold px-4 py-2 rounded-lg hover:-translate-y-0.5 transition">
+        + Jual Mobil
+    </a>
+</nav>
+
     {{-- Flash message --}}
     @if (session('success'))
         <div class="max-w-6xl mx-auto px-6 pt-6">
