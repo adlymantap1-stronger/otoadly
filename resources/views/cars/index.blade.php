@@ -52,9 +52,9 @@
                    class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition block">
                     <div class="h-40 bg-linear-to-br from-navy-800 to-navy-950 flex items-center justify-center">
              @if ($car->image)
-            <img src="{{ $car->image }}"
-             alt="{{ $car->brand }} {{ $car->model }}"
-             class="w-full h-full object-cover">
+            <<img src="{{ $car->image }}"
+                alt="{{ $car->brand }} {{ $car->model }}"
+              class="w-full h-full object-contain p-2">
             @else
             <span class="text-white/20 text-xs">Tidak ada foto</span>
              @endif
