@@ -52,12 +52,12 @@ public function index(Request $request)
             'transmission' => 'required|in:manual,matic',
             'fuel_type'    => 'required|in:bensin,diesel,listrik,hybrid',
             'description'  => 'nullable|string',
-            'image'        => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'nullable|url',
         ]);
 
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('cars', 'public');
-        }
+        // if ($request->hasFile('image')) {
+        //     $validated['image'] = $request->file('image')->store('cars', 'public');
+        // }
 
         $validated['user_id'] = Auth::id();
         $validated['status']  = 'available';

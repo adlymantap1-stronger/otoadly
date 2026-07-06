@@ -94,11 +94,12 @@
             </div>
 
             <div>
-                <label class="text-sm font-semibold text-navy-950">Foto Mobil</label>
-                <input type="file" name="image" accept="image/*"
-                       class="w-full mt-1 px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-amber-400">
-                <p class="text-xs text-gray-400 mt-1">Format: JPG, PNG, WEBP. Maksimal 2MB.</p>
-                @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+             <label class="text-sm font-semibold text-navy-950">URL Foto Mobil</label>
+            <input type="text" name="image" value="{{ old('image') }}"
+           class="w-full mt-1 px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-amber-400"
+           placeholder="https://contoh.com/foto-mobil.jpg">
+            <p class="text-xs text-gray-400 mt-1">Masukkan URL foto mobil dari internet.</p>
+            @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
             </div>
 
             <button type="submit"

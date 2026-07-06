@@ -16,7 +16,7 @@
         <div class="bg-navy-950 rounded-2xl p-5 mb-6 flex gap-4 items-center">
             <div class="w-20 h-16 rounded-lg overflow-hidden bg-navy-800 flex-shrink-0">
                 @if ($car->image)
-                    <img src="{{ asset('storage/' . $car->image) }}" class="w-full h-full object-cover">
+                    <img src="{{ $car->image) }}" class="w-full h-full object-cover">
                 @else
                     <div class="w-full h-full flex items-center justify-center text-white/20 text-xs">No foto</div>
                 @endif

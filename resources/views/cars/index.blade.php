@@ -51,14 +51,14 @@
                 <a href="{{ route('cars.show', $car) }}"
                    class="bg-white rounded-xl overflow-hidden border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition block">
                     <div class="h-40 bg-linear-to-br from-navy-800 to-navy-950 flex items-center justify-center">
-                        @if ($car->image)
-                            <img src="{{ asset('storage/' . $car->image) }}"
-                                 alt="{{ $car->brand }} {{ $car->model }}"
-                                 class="w-full h-full object-cover">
-                        @else
-                            <span class="text-white/20 text-xs">Tidak ada foto</span>
-                        @endif
-                    </div>
+             @if ($car->image)
+            <img src="{{ $car->image }}"
+             alt="{{ $car->brand }} {{ $car->model }}"
+             class="w-full h-full object-cover">
+            @else
+            <span class="text-white/20 text-xs">Tidak ada foto</span>
+             @endif
+            </div>
                     <div class="p-4">
                         <div class="font-semibold text-navy-950">{{ $car->brand }} {{ $car->model }}</div>
                         <div class="text-xs text-gray-500 mt-0.5">

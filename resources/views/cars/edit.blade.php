@@ -88,23 +88,24 @@
 
             {{-- Foto saat ini --}}
             @if ($car->image)
-                <div>
-                    <label class="text-sm font-semibold text-navy-950">Foto Saat Ini</label>
-                    <img src="{{ asset('storage/' . $car->image) }}"
-                         alt="Foto mobil"
-                         class="mt-2 w-40 h-28 object-cover rounded-lg border border-gray-200">
-                </div>
+         <div>
+          <label class="text-sm font-semibold text-navy-950">Foto Saat Ini</label>
+         <img src="{{ $car->image }}"
+         alt="Foto mobil"
+         class="mt-2 w-40 h-28 object-cover rounded-lg border border-gray-200">
+        </div>
             @endif
 
             <div>
-                <label class="text-sm font-semibold text-navy-950">
-                    {{ $car->image ? 'Ganti Foto (opsional)' : 'Foto Mobil' }}
-                </label>
-                <input type="file" name="image" accept="image/*"
-                       class="w-full mt-1 px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-amber-400">
-                <p class="text-xs text-gray-400 mt-1">Format: JPG, PNG, WEBP. Maksimal 2MB.</p>
-                @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-            </div>
+            <label class="text-sm font-semibold text-navy-950">
+            {{ $car->image ? 'Ganti URL Foto (opsional)' : 'URL Foto Mobil' }}
+            </label>
+            <input type="text" name="image" value="{{ old('image', $car->image) }}"
+           class="w-full mt-1 px-4 py-2.5 rounded-lg border border-gray-200 text-sm focus:outline-none focus:border-amber-400"
+           placeholder="https://contoh.com/foto-mobil.jpg">
+            <p class="text-xs text-gray-400 mt-1">Masukkan URL foto mobil dari internet.</p>
+            @error('image') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+        </div>
 
             <button type="submit"
                     class="w-full bg-amber-400 text-navy-950 font-semibold py-3 rounded-lg hover:-translate-y-0.5 hover:shadow-lg transition">

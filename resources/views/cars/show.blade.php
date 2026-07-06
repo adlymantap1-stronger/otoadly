@@ -15,7 +15,7 @@
             {{-- Foto --}}
             <div class="h-72 bg-linear-to-br from-navy-800 to-navy-950 flex items-center justify-center">
                 @if ($car->image)
-                    <img src="{{ asset('storage/' . $car->image) }}"
+                    <img src="{{ $car->image) }}"
                          alt="{{ $car->brand }} {{ $car->model }}"
                          class="w-full h-full object-cover">
                 @else
