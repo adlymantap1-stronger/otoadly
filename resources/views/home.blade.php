@@ -89,24 +89,32 @@
     </button>
 
     {{-- Mobile menu --}}
-    <div x-show="open" class="absolute top-16 left-0 right-0 bg-navy-950 border-t border-white/10 px-6 py-4 space-y-3 z-50 md:hidden">
-        <a href="#mobil-pilihan" @click="open = false" class="block text-slate-300 hover:text-white text-sm py-2 transition">Beli Mobil</a>
-        <a href="{{ route('cars.create') }}" class="block text-slate-300 hover:text-white text-sm py-2 transition">Jual Mobil</a>
-        <a href="{{ route('simulasi-kredit') }}" class="block text-slate-300 hover:text-white text-sm py-2 transition">Simulasi Kredit</a>
-        <a href="#bantuan" @click="open = false" class="block text-slate-300 hover:text-white text-sm py-2 transition">Bantuan</a>
-        <div class="border-t border-white/10 pt-3">
-            @auth
-                <a href="{{ route('orders.notifications') }}" class="block text-slate-300 hover:text-white text-sm py-2 transition">Notifikasi</a>
-                <a href="{{ route('orders.my') }}" class="block text-slate-300 hover:text-white text-sm py-2 transition">Pesanan Saya</a>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button type="submit" class="text-red-400 text-sm py-2 hover:text-red-300 transition">Logout</button>
-                </form>
-            @else
-                <a href="{{ route('login') }}" class="block text-slate-300 hover:text-white text-sm py-2 transition">Masuk</a>
-                <a href="{{ route('cars.create') }}" class="block bg-amber-400 text-navy-950 text-sm font-semibold px-4 py-2 rounded-lg mt-2 text-center">+ Jual Mobil Anda</a>
-            @endauth
-        </div>
+    <div x-show="open" @click.outside="open = false" class="fixed top-0 left-0 right-0 bottom-0 bg-navy-950 z-50 px-6 py-8 md:hidden overflow-y-auto">
+    <div class="flex justify-between items-center mb-8">
+        <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
+        <button @click="open = false" class="text-white">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </div>
+    <a href="#mobil-pilihan" @click="open = false" class="block text-white text-lg py-3 border-b border-white/10">Beli Mobil</a>
+    <a href="{{ route('cars.create') }}" class="block text-white text-lg py-3 border-b border-white/10">Jual Mobil</a>
+    <a href="{{ route('simulasi-kredit') }}" class="block text-white text-lg py-3 border-b border-white/10">Simulasi Kredit</a>
+    <a href="#bantuan" @click="open = false" class="block text-white text-lg py-3 border-b border-white/10">Bantuan</a>
+    <div class="mt-6">
+        @auth
+            <a href="{{ route('orders.notifications') }}" class="block text-white text-lg py-3 border-b border-white/10">Notifikasi</a>
+            <a href="{{ route('orders.my') }}" class="block text-white text-lg py-3 border-b border-white/10">Pesanan Saya</a>
+            <form action="{{ route('logout') }}" method="POST" class="mt-4">
+                @csrf
+                <button type="submit" class="w-full bg-red-500 text-white font-semibold py-3 rounded-lg">Logout</button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="block text-center bg-white/10 text-white font-semibold py-3 rounded-lg mb-3">Masuk</a>
+            <a href="{{ route('cars.create') }}" class="block text-center bg-amber-400 text-navy-950 font-semibold py-3 rounded-lg">+ Jual Mobil Anda</a>
+        @endauth
+    </div>
     </div>
 </nav>
 
