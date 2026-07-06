@@ -87,8 +87,9 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
+</nav>
 
-    {{-- Mobile menu --}}
+{{-- Mobile menu --}}
     <div x-show="open" @click.outside="open = false" class="fixed top-0 left-0 right-0 bottom-0 bg-navy-950 z-50 px-6 py-8 md:hidden overflow-y-auto">
     <div class="flex justify-between items-center mb-8">
         <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
@@ -115,8 +116,7 @@
             <a href="{{ route('cars.create') }}" class="block text-center bg-amber-400 text-navy-950 font-semibold py-3 rounded-lg">+ Jual Mobil Anda</a>
         @endauth
     </div>
-    </div>
-</nav>
+  </div>
 
 <section class="relative overflow-hidden pt-20 pb-28 px-6 text-center bg-navy-950">
     <div class="absolute inset-0 z-0">
