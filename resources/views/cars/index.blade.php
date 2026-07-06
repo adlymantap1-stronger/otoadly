@@ -53,8 +53,7 @@
                     <div class="h-40 bg-white flex items-center justify-center">
              @if ($car->image)
             <<img src="{{ $car->image }}"
-                alt="{{ $car->brand }} {{ $car->model }}"
-              class="w-full h-full object-contain p-2">
+                alt="{{ $car->brand }} {{ $car->model }} "class="w-full h-full object-contain">
             @else
             <span class="text-white/20 text-xs">Tidak ada foto</span>
              @endif
