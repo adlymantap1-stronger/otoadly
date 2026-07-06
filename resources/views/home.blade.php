@@ -161,7 +161,7 @@
     @forelse ($cars as $car)
         <a href="{{ route('cars.show', $car) }}"
            class="block bg-white rounded-xl overflow-hidden border border-gray-100 hover:-translate-y-1 hover:shadow-xl transition">
-            <div class="h-40 bg-linear-to-br from-navy-800 to-navy-950 flex items-center justify-center">
+            <div class="h-40 bg-white flex items-center justify-center">
                @if ($car->image)
              <img src="{{ $car->image }}"
             alt="{{ $car->brand }} {{ $car->model }}"
