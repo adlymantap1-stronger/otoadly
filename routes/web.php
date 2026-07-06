@@ -6,8 +6,8 @@ use App\Http\Controllers\OrderController;
 
 Route::get('/', function () {
     $cars = \App\Models\Car::latest()->take(6)->get();
-    return view('welcome', compact('cars'));
-})->name('welcome');
+    return view('home', compact('cars'));
+})->name('home');
 
 Route::get('/cars', [CarController::class, 'index'])->name('cars.index');
 
