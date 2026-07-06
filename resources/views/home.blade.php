@@ -10,7 +10,7 @@
 </div>
 <nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5">
     {{-- Logo --}}
-    <a href="{{ route('welcome') }}" class="flex items-center gap-2 flex-shrink-0">
+    <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
         <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
             <path d="M10 10 C13 3, 18 1, 24 1 L36 1 C42 1, 47 3, 50 10 Z" fill="#F5A623"/>
