@@ -11,8 +11,8 @@
 </div>
 
 {{-- 2. Navbar Container Utama (Gunakan relative dan z-50 agar menu mobile tidak terpotong) --}}
-<nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5 justify-between relative z-50" x-data="{ open: false }">
-    {{-- Logo --}}
+<<nav class="bg-navy-950 px-6 md:px-12 py-5 flex items-center border-b border-white/5 justify-between relative z-50" x-data="{ open: false }">
+    
     <a href="{{ route('home') }}" class="flex items-center gap-2 flex-shrink-0">
         <svg viewBox="0 0 60 30" width="48" height="24" xmlns="http://www.w3.org/2000/svg">
             <rect x="2" y="10" width="56" height="16" rx="4" fill="#0B1220" stroke="#F5A623" stroke-width="1.5"/>
@@ -28,7 +28,6 @@
         <span class="font-display text-xl font-bold text-white">Oto<span class="text-amber-400">adly</span></span>
     </a>
 
-    {{-- Menu Desktop --}}
     <div class="hidden md:flex flex-1 items-center justify-center gap-8 text-sm">
         <a href="#mobil-pilihan" class="text-slate-300 hover:text-white transition">Beli Mobil</a>
         <a href="{{ route('cars.create') }}" class="text-slate-300 hover:text-white transition">Jual Mobil</a>
@@ -36,11 +35,10 @@
         <a href="#bantuan" class="text-slate-300 hover:text-white transition">Bantuan</a>
     </div>
 
-    {{-- Auth Desktop --}}
     <div class="hidden md:flex items-center gap-3 flex-shrink-0">
         @auth
             <div class="relative" x-data="{ dropdownOpen: false }">
-                <button @click="dropdownOpen = !dropdownOpen" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
+                <button @click="dropdownOpen = !dropdownOpen" @click.outside="dropdownOpen = false" class="flex items-center gap-2 text-slate-300 hover:text-white text-sm transition">
                     <span>{{ auth()->user()->name }}</span>
                     @if (auth()->user()->unreadNotifications->count() > 0)
                         <span class="bg-amber-400 text-navy-950 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center">
@@ -51,21 +49,13 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                     </svg>
                 </button>
-                <div x-show="dropdownOpen" @click.outside="dropdownOpen = false"
-                     class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50"
-                     x-cloak>
-                    <a href="{{ route('orders.notifications') }}" class="flex items-center justify-between px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                        Notifikasi
-                    </a>
-                    <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">
-                        Pesanan Saya
-                    </a>
+                <div x-show="dropdownOpen" class="absolute right-0 top-10 bg-navy-800 border border-white/10 rounded-xl shadow-xl w-48 py-2 z-50" x-cloak>
+                    <a href="{{ route('orders.notifications') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">Notifikasi</a>
+                    <a href="{{ route('orders.my') }}" class="block px-4 py-2.5 text-sm text-slate-300 hover:text-white hover:bg-white/5 transition">Pesanan Saya</a>
                     <div class="border-t border-white/10 my-1"></div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">
-                            Logout
-                        </button>
+                        <button type="submit" class="w-full text-left px-4 py-2.5 text-sm text-red-400 hover:text-red-300 hover:bg-white/5 transition">Logout</button>
                     </form>
                 </div>
             </div>
@@ -77,17 +67,15 @@
         @endauth
     </div>
 
-    {{-- Hamburger & Close Button Mobile (Disatukan dalam satu wadah agar tidak bug berganti icon) --}}
-    <button @click="open = !open" class="block md:hidden text-white p-2 focus:outline-none z-50 relative">
-        <svg x-show="!open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+    <button @click="open = !open" type="button" class="block md:hidden bg-amber-400 text-navy-950 p-2.5 rounded-xl focus:outline-none transition active:scale-95">
+        <svg x-show="!open" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
-        <svg x-show="open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" x-cloak>
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        <svg x-show="open" class="size-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5" x-cloak>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
         </svg>
     </button>
 
-    {{-- 3. Dropdown Menu Mobile Overlay (Menggunakan absolute top-full untuk menutup layar ke bawah secara dinamis) --}}
     <div x-show="open" 
          @click.outside="open = false"
          x-transition:enter="transition ease-out duration-200"
@@ -99,7 +87,6 @@
          class="absolute top-full left-0 right-0 bg-[#0B1220] border-b border-white/5 px-6 py-6 md:hidden flex flex-col shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] z-40"
          x-cloak>
          
-        {{-- List Link Navigasi Mobile --}}
         <div class="flex flex-col mb-6">
             <a href="#mobil-pilihan" @click="open = false" class="block text-white text-base py-4 border-b border-white/5 hover:text-amber-400 transition">Beli Mobil</a>
             <a href="{{ route('cars.create') }}" @click="open = false" class="block text-white text-base py-4 border-b border-white/5 hover:text-amber-400 transition">Jual Mobil</a>
@@ -112,7 +99,6 @@
             @endauth
         </div>
 
-        {{-- Tombol Aksi Bawah --}}
         <div class="w-full flex flex-col space-y-3">
             @auth
                 <form action="{{ route('logout') }}" method="POST" class="w-full">
