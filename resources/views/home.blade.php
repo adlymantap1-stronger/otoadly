@@ -171,7 +171,7 @@
                 <div class="text-xs font-semibold text-amber-400 uppercase tracking-wide mb-1">Baru ditambahkan</div>
                 <h2 class="font-display text-2xl md:text-3xl font-bold text-navy-950">Mobil pilihan hari ini</h2>
             </div>
-            <a href="{{ route('cars.index') }}" class="text-sm font-semibold text-navy-950 hidden md:block">Lihat semua &rarr;</a>
+            <a href="{{ route('cars.index') }}" class="text-sm font-semibold text-navy-950">Lihat semua &rarr;</a>
         </div>
 
         <div class="grid md:grid-cols-3 gap-6">
