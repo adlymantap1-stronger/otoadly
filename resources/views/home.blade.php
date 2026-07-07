@@ -97,87 +97,94 @@
 </nav>
 
 {{-- Carousel Banner --}}
-<div class="relative overflow-hidden bg-navy-900" x-data="{
+<div class="relative overflow-hidden" x-data="{
     current: 0,
     total: 3,
-    autoplay: true,
     init() {
-        if (this.autoplay) {
-            setInterval(() => {
-                this.current = (this.current + 1) % this.total
-            }, 4000)
-        }
-    }
-}">
+        setInterval(() => {
+            this.current = (this.current + 1) % this.total
+        }, 5000)
+    },
+    prev() { this.current = (this.current - 1 + this.total) % this.total },
+    next() { this.current = (this.current + 1) % this.total }
+}" 
+x-on:touchstart="touchStartX = $event.touches[0].clientX"
+x-on:touchend="if ($event.changedTouches[0].clientX - touchStartX < -50) next(); else if ($event.changedTouches[0].clientX - touchStartX > 50) prev()"
+x-data="{ ...($data), touchStartX: 0 }">
+
     {{-- Slides --}}
     <div class="flex transition-transform duration-500 ease-in-out"
          :style="`transform: translateX(-${current * 100}%)`">
 
-        {{-- Slide 1 --}}
-        <div class="min-w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-navy-950 to-navy-800">
-            <div class="flex items-center gap-4">
-                <span class="text-2xl">🚗</span>
+        {{-- Banner 1 --}}
+        <div class="min-w-full relative h-40 md:h-56">
+            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&q=80"
+                 class="w-full h-full object-cover" alt="Banner 1">
+            <div class="absolute inset-0 bg-navy-950/50 flex items-center px-8">
                 <div>
-                    <div class="text-white font-semibold text-sm">Jual Mobil Kamu Sekarang!</div>
-                    <div class="text-slate-300 text-xs mt-0.5">Gratis pasang iklan, langsung terhubung ke ribuan pembeli</div>
+                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wide">Promo Spesial</div>
+                    <div class="text-white font-display text-xl md:text-3xl font-bold mt-1">Jual Mobilmu Sekarang</div>
+                    <div class="text-slate-300 text-sm mt-1">Gratis pasang iklan, langsung terhubung ke pembeli</div>
+                    <a href="{{ route('cars.create') }}" class="inline-block mt-3 bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg">
+                        Mulai Jual →
+                    </a>
                 </div>
             </div>
-            <a href="{{ route('cars.create') }}" class="bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0">
-                Mulai Jual →
-            </a>
         </div>
 
-        {{-- Slide 2 --}}
-        <div class="min-w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-amber-400/20 to-navy-900">
-            <div class="flex items-center gap-4">
-                <span class="text-2xl">💰</span>
+        {{-- Banner 2 --}}
+        <div class="min-w-full relative h-40 md:h-56">
+            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=1200&q=80"
+                 class="w-full h-full object-cover" alt="Banner 2">
+            <div class="absolute inset-0 bg-navy-950/50 flex items-center px-8">
                 <div>
-                    <div class="text-white font-semibold text-sm">Simulasi Kredit Mudah & Cepat</div>
-                    <div class="text-slate-300 text-xs mt-0.5">Hitung cicilan mobilmu sebelum beli — gratis!</div>
+                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wide">Simulasi Kredit</div>
+                    <div class="text-white font-display text-xl md:text-3xl font-bold mt-1">Hitung Cicilan Mobilmu</div>
+                    <div class="text-slate-300 text-sm mt-1">Rencanakan pembelian dengan simulasi kredit gratis</div>
+                    <a href="{{ route('simulasi-kredit') }}" class="inline-block mt-3 bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg">
+                        Coba Sekarang →
+                    </a>
                 </div>
             </div>
-            <a href="{{ route('simulasi-kredit') }}" class="bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0">
-                Coba Sekarang →
-            </a>
         </div>
 
-        {{-- Slide 3 --}}
-        <div class="min-w-full px-6 py-4 flex items-center justify-between bg-gradient-to-r from-green-900/30 to-navy-900">
-            <div class="flex items-center gap-4">
-                <span class="text-2xl">✅</span>
+        {{-- Banner 3 --}}
+        <div class="min-w-full relative h-40 md:h-56">
+            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=1200&q=80"
+                 class="w-full h-full object-cover" alt="Banner 3">
+            <div class="absolute inset-0 bg-navy-950/50 flex items-center px-8">
                 <div>
-                    <div class="text-white font-semibold text-sm">850+ Penjual Terverifikasi</div>
-                    <div class="text-slate-300 text-xs mt-0.5">Semua penjual sudah diverifikasi identitas & dokumennya</div>
+                    <div class="text-amber-400 text-xs font-semibold uppercase tracking-wide">Terpercaya</div>
+                    <div class="text-white font-display text-xl md:text-3xl font-bold mt-1">850+ Penjual Verified</div>
+                    <div class="text-slate-300 text-sm mt-1">Semua penjual sudah diverifikasi identitas & dokumen</div>
+                    <a href="{{ route('cars.index') }}" class="inline-block mt-3 bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg">
+                        Lihat Mobil →
+                    </a>
                 </div>
             </div>
-            <a href="{{ route('cars.index') }}" class="bg-amber-400 text-navy-950 text-xs font-bold px-4 py-2 rounded-lg whitespace-nowrap flex-shrink-0">
-                Lihat Mobil →
-            </a>
         </div>
 
-    </div>
-
-    {{-- Dots indicator --}}
-    <div class="flex justify-center gap-1.5 pb-2">
-        <template x-for="i in total" :key="i">
-            <button @click="current = i - 1"
-                    :class="current === i - 1 ? 'bg-amber-400 w-4' : 'bg-white/30 w-1.5'"
-                    class="h-1.5 rounded-full transition-all duration-300">
-            </button>
-        </template>
     </div>
 
     {{-- Arrow prev --}}
-    <button @click="current = (current - 1 + total) % total"
-            class="absolute left-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition p-1">
+    <button @click="prev()" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-8 h-8 rounded-full flex items-center justify-center transition">
         ‹
     </button>
 
     {{-- Arrow next --}}
-    <button @click="current = (current + 1) % total"
-            class="absolute right-2 top-1/2 -translate-y-1/2 text-white/50 hover:text-white transition p-1">
+    <button @click="next()" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/30 hover:bg-black/50 text-white w-8 h-8 rounded-full flex items-center justify-center transition">
         ›
     </button>
+
+    {{-- Dots --}}
+    <div class="absolute bottom-2 left-0 right-0 flex justify-center gap-1.5">
+        <template x-for="i in total" :key="i">
+            <button @click="current = i - 1"
+                    :class="current === i - 1 ? 'bg-amber-400 w-4' : 'bg-white/50 w-1.5'"
+                    class="h-1.5 rounded-full transition-all duration-300">
+            </button>
+        </template>
+    </div>
 </div>
 
 <section class="relative overflow-hidden pt-20 pb-28 px-6 text-center bg-navy-950">
